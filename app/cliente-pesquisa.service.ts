@@ -10,7 +10,7 @@ export class ClientePesquisaService {
     pesquisaClientes(clientePesquisa: ClientePesquisa) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        let url = 'http://localhost:8080/Solyos_API/rs/service/pesquisa';
+        let url = 'http://localhost:8080/API/rs/service/pesquisa';
         return this.http
             .post(url, JSON.stringify(clientePesquisa), { headers: headers })
             .toPromise()

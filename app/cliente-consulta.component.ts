@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { Cliente } from './cliente';
 import { ClienteService }     from './cliente.service';
 import { Router } from '@angular/router'
@@ -12,7 +12,7 @@ import { ClienteCadastroComponent } from './cliente-cadastro.component'
 })
 
 
-export class ClientesConsultaComponent implements OnInit {
+export class ClientesConsultaComponent {
     @Input() clientes: Cliente[];
 
     constructor(

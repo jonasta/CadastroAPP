@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ClienteService {
-    private clientesUrl = 'http://localhost:8080/Solyos_API/rs/service';  // URL to web api
+    private clientesUrl = 'http://localhost:8080/API/rs/service';  // URL to web api
 
     constructor(private http: Http) { }
 
