@@ -1,41 +1,49 @@
-<div *ngIf="clientePesquisa" id="pesquisa" class="row white">
+<div *ngIf="clientePesquisa" id="pesquisa" class="row">
+    <details>
+        <summary>
+            <div class="collapsible-header">
+                <i class="material-icons">search</i>Filtrar Clientes
 
-    <div class="col s12 m3">
-        <label for="nome">Nome</label>
-        <input placeholder="Nome" id="nome" type="text" [(ngModel)]="clientePesquisa.nome">
+            </div>
+        </summary>
 
-    </div>
+        <div class="col s12 m3">
+            <label for="nome">Nome</label>
+            <input placeholder="Nome" id="nome" type="text" [(ngModel)]="clientePesquisa.nome">
+        </div>
 
-    <div class="col s12 m3">
-        <label for="cpf">CPF</label>
-        <input placeholder="CPF" id="cpf" type="text" [(ngModel)]="clientePesquisa.cpf">
-    </div>
+        <div class="col s12 m3">
+            <label for="cpf">CPF</label>
+            <input placeholder="CPF" id="cpf" type="text" [(ngModel)]="clientePesquisa.cpf">
+        </div>
 
-    <div class="col s12 m3">
-        <label for="email">Email</label>
-        <input placeholder="Email" id="email" type="text" [(ngModel)]="clientePesquisa.email">
-    </div>
+        <div class="col s12 m3">
+            <label for="email">Email</label>
+            <input placeholder="Email" id="email" type="text" [(ngModel)]="clientePesquisa.email">
+        </div>
 
-    <div class="col s12 m3">
-        <label for="nascimentoInicial">Nascimento de
-        </label>
-        <input placeholder="Nascimento de" id="nascimento-de" type="date" [(ngModel)]="clientePesquisa.dataInicio">
-    </div>
+        <div class="col s12 m3">
+            <label for="nascimentoInicial">Nascimento de
+            </label>
+            <input placeholder="Nascimento de" id="nascimento-de" type="date" [(ngModel)]="clientePesquisa.dataInicio">
+        </div>
 
-    <div class="col s12 m3">
-        <label for="nascimentoFinal">Nascimento até</label>
-        <input placeholder="Nascimento" id="nascimento-ate" type="date" [(ngModel)]="clientePesquisa.dataFim">
-    </div>
+        <div class="col s12 m3">
+            <label for="nascimentoFinal">Nascimento até</label>
+            <input placeholder="Nascimento" id="nascimento-ate" type="date" [(ngModel)]="clientePesquisa.dataFim">
+        </div>
 
-    <button class="waves-effect waves-light btn" (click)="pesquisaClientes(clientePesquisa)">Filtrar</button>
-    <!-- <div>
-      <div *ngFor="let cliente of clientes | async"
+        <button class="waves-effect waves-light btn blue" (click)="pesquisaClientes(clientePesquisa)" onclick="document.getElementsByTagName('details')[0].removeAttribute('open');">Pesquisar</button>
+        <div>
+            <!-- <div *ngFor="let cliente of clientes"
            (click)="gotoCadastro(cliente)" class="search-result" >
         {{cliente.nome}}
-      </div>
-    </div> -->
+      </div> -->
+        </div>
 
+    </details>
 </div>
+
 <div class="row white">
     <lista-clientes [clientes]="clientes"></lista-clientes>
 </div>

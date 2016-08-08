@@ -8,21 +8,19 @@ export class ClientePesquisaService {
     constructor(private http: Http) { }
 
     pesquisaClientes(clientePesquisa: ClientePesquisa) {
-        console.log('service.pesquisaclientes');
-        return this.post(clientePesquisa);
-
-    }
-
-    private post(clientePesquisa: ClientePesquisa) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         let url = 'http://localhost:8080/Solyos_API/rs/service/pesquisa';
-
-        console.log('service.post');
-
         return this.http
             .post(url, JSON.stringify(clientePesquisa), { headers: headers })
-            .map((r: Response) => r.json() as Cliente[]);
+            .toPromise()
+            .then(response => response.json() as Cliente[])
+            .catch(this.handleError);
+    }
+
+    private handleError(error: any) {
+        console.error('An error occurred', error);
+        return Promise.reject(error.message || error);
     }
 
 

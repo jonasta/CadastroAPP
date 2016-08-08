@@ -4,7 +4,6 @@ import { ClienteService }     from './cliente.service';
 import { Router } from '@angular/router'
 import { ClientePesquisa } from './cliente-pesquisa';
 import { ClienteCadastroComponent } from './cliente-cadastro.component'
-import { Observable }        from 'rxjs/Observable';
 
 @Component({
     selector: 'lista-clientes',
@@ -14,15 +13,11 @@ import { Observable }        from 'rxjs/Observable';
 
 
 export class ClientesConsultaComponent implements OnInit {
-    @Input() clientes: Observable<Cliente[]>;
+    @Input() clientes: Cliente[];
 
     constructor(
         private clienteService: ClienteService,
         private router: Router) { }
-
-
-    ngOnInit() {
-    }
 
     gotoCadastro(cliente: Cliente) {
         let link = ['/cliente', cliente.id];

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Cliente } from './cliente';
+import { ClienteCadastro } from './cliente-cadastro';
 import { ClienteService } from './cliente.service';
 
 @Component({
@@ -22,6 +23,7 @@ export class ClienteCadastroComponent implements OnInit, OnDestroy {
         this.sub = this.route.params.subscribe(params => {
             if (params['id'] !== undefined) {
                 let id = +params['id'];
+                console.log(id)
                 this.clienteService.getCliente(id)
                     .then(cliente => this.cliente = cliente);
             } else {
@@ -35,9 +37,14 @@ export class ClienteCadastroComponent implements OnInit, OnDestroy {
     save() {
         this.clienteService
             .save(this.cliente)
-            .then(cliente => {
-                this.cliente = cliente;
-                this.goBack(cliente);
+            .then(clienteCadastro => {
+                if(clienteCadastro.success){
+                  this.cliente = clienteCadastro.cliente;
+                  alert(clienteCadastro.message);
+                  this.goBack(this.cliente);
+                } else{
+                  alert(clienteCadastro.message);
+                }
             })
             .catch(error => this.error = error);
     }
@@ -48,6 +55,6 @@ export class ClienteCadastroComponent implements OnInit, OnDestroy {
 
     goBack(clienteSalvo: Cliente = null) {
         this.close.emit(clienteSalvo);
-        window.history.back(); 
+        window.history.back();
     }
 }

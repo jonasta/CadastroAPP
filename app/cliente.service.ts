@@ -1,6 +1,7 @@
 import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { Cliente } from './cliente';
+import { ClienteCadastro } from './cliente-cadastro';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -11,14 +12,27 @@ export class ClienteService {
 
     getClientes() {
         return this.http.get(this.clientesUrl)//observable
-            .toPromise()
-            .then(response => response.json() as Cliente[])
-            .catch(this.handleError);
+                .toPromise()
+                .then(response => response.json() as Cliente[])
+                .catch(this.handleError);
     }
 
-    getCliente(id: number) {
-        return this.getClientes()
-            .then(clientes => clientes.find(cliente => cliente.id === id));
+    // getClientes() {
+    //     return this.http.get(this.clientesUrl)//observable
+    //         .toPromise()
+    //         .then(response => response.json() as Cliente[])
+    //         .catch(this.handleError);
+    // }
+
+    getCliente(id: number): Promise<Cliente>  {
+        // return this.getClientes()
+        //     .then(clientes => clientes.find(cliente => cliente.id === id));
+
+        return this.http
+                   .get(`${this.clientesUrl}/pesquisaPorId/?id=${id}`)
+                   .toPromise()
+                   .then(res => res.json())
+                   .catch(this.handleError);
     }
 
 
@@ -34,14 +48,14 @@ export class ClienteService {
             .catch(this.handleError);
     }
 
-    save(cliente: Cliente): Promise<Cliente> {
+    save(cliente: Cliente): Promise<ClienteCadastro> {
         if (cliente.id) {
             return this.put(cliente);
         }
         return this.post(cliente);
     }
 
-    private post(cliente: Cliente): Promise<Cliente> {
+    private post(cliente: Cliente): Promise<ClienteCadastro> {
         let headers = new Headers({
             'Content-Type': 'application/json'
         });
@@ -49,7 +63,7 @@ export class ClienteService {
         return this.http
             .post(this.clientesUrl, JSON.stringify(cliente), { headers: headers })
             .toPromise()
-            .then(res => res.json().data)
+            .then(res => res.json())
             .catch(this.handleError);
     }
 
@@ -62,7 +76,7 @@ export class ClienteService {
         return this.http
             .put(url, JSON.stringify(cliente), { headers: headers })
             .toPromise()
-            .then(() => cliente)
+            .then(res => res.json())
             .catch(this.handleError);
     }
 
