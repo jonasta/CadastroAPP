@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["file:///c:/Users/Jota/CadastroAPP/tmp/broccoli_type_script_compiler-input_base_path-CjiRF2r8.tmp/0/src/app/cliente/cliente-pesquisa/index.ts"],"names":[],"mappings":";;;;AAAA,iBAAc,8BAA8B,CAAC,EAAA","sourcesContent":["export * from './cliente-pesquisa.component';\n"]}
