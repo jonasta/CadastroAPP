@@ -11,7 +11,7 @@ import 'rxjs/add/operator/toPromise';
 export class ClienteService {
 
   private clientesUrl = 'http://localhost:8080/API/rs/service';  // URL to web api
-
+//comentario
   constructor(private http: Http) {
     if (environment.production){
       this.clientesUrl = 'http://cadatroapi2-env.wvmh9qgfdc.sa-east-1.elasticbeanstalk.com/rs/service';  // URL to web api
