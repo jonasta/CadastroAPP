@@ -11,12 +11,12 @@ import 'rxjs/add/operator/toPromise';
 export class ClienteService {
 
   private clientesUrl = 'http://localhost:8080/API/rs/service';  // URL to web api
-//comentario
+
   constructor(private http: Http) {
-    if (environment.production){
+    if (environment.production) {
       this.clientesUrl = 'http://cadatroapi2-env.wvmh9qgfdc.sa-east-1.elasticbeanstalk.com/rs/service';  // URL to web api
     }
-}
+  }
 
   getClientes() {
     return this.http.get(this.clientesUrl)//observable
@@ -80,13 +80,13 @@ export class ClienteService {
   }
 
   pesquisaClientes(parametrosDTO: ParametrosDTO) {
-      let headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      return this.http
-          .post(`${this.clientesUrl}/pesquisa`, JSON.stringify(parametrosDTO), { headers: headers })
-          .toPromise()
-          .then(response => response.json() as Cliente[])
-          .catch(this.handleError);
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http
+      .post(`${this.clientesUrl}/pesquisa`, JSON.stringify(parametrosDTO), { headers: headers })
+      .toPromise()
+      .then(response => response.json() as Cliente[])
+      .catch(this.handleError);
   }
 
   private handleError(error: any) {
