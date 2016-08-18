@@ -3,7 +3,7 @@ import { Router }            from '@angular/router';
 import { ClienteService } from '../cliente.service';
 import { Cliente } from '../cliente';
 import { ParametrosDTO } from './parametrosDTO';
-
+//comentario
 @Component({
   moduleId: module.id,
   selector: 'app-cliente-pesquisa',
