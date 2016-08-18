@@ -1,0 +1,91 @@
+<div *ngIf="parametrosDTO" id="pesquisa" class="row">
+  <details>
+    <summary>
+      <div class="collapsible-header">
+        <i class="material-icons">search</i>Filtrar Clientes
+
+      </div>
+    </summary>
+
+    <div class="col s12 m3">
+      <label for="nome">Nome</label>
+      <input placeholder="Nome" id="nome" type="text" [(ngModel)]="parametrosDTO.nome">
+    </div>
+
+    <div class="col s12 m3">
+      <label for="cpf">CPF</label>
+      <input placeholder="CPF" id="cpf" type="text" [(ngModel)]="parametrosDTO.cpf">
+    </div>
+
+    <div class="col s12 m3">
+      <label for="email">Email</label>
+      <input placeholder="Email" id="email" type="text" [(ngModel)]="parametrosDTO.email">
+    </div>
+
+    <div class="col s12 m3">
+      <label for="nascimentoInicial">Nascimento de
+      </label>
+      <input placeholder="Nascimento de" id="nascimento-de" type="date" [(ngModel)]="parametrosDTO.dataInicio">
+    </div>
+
+    <div class="col s12 m3">
+      <label for="nascimentoFinal">Nascimento até</label>
+      <input placeholder="Nascimento" id="nascimento-ate" type="date" [(ngModel)]="parametrosDTO.dataFim">
+    </div>
+
+    <button class="waves-effect waves-light btn blue" (click)="pesquisaClientes(parametrosDTO)" onclick="document.getElementsByTagName('details')[0].removeAttribute('open');">Pesquisar</button>
+
+      <!-- <div *ngFor="let cliente of clientes" (click)="gotoCadastro(cliente)" class="search-result">
+        {{cliente.nome}}
+      </div> -->
+
+
+  </details>
+</div>
+
+<div class="row white">
+    <table class="responsive-table">
+        <thead>
+            <tr>
+                <th data-field="nome">Nome</th>
+                <th data-field="nascimento">Nascimento</th>
+                <th data-field="cpf">CPF</th>
+                <th data-field="email">Email</th>
+                <th data-field="telefone">Fone</th>
+                <th data-field="editar"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cliente of clientes" [class.inativo]="!cliente.ativo">
+                <td>{{cliente.nome}}</td>
+                <td>{{cliente.nascimento | date:"dd/MM/yyyy"}}</td>
+                <td>{{cliente.cpf}}</td>
+                <td>{{cliente.email}}</td>
+                <td>{{cliente.telefone}}</td>
+                <td>
+                    <a (click)="gotoCadastro(cliente)" class="waves-effect waves-light btn botaoAcao">
+                        <i class="tyni material-icons">edit</i>
+                    </a>
+                </td>
+            </tr>
+            <div *ngIf="clientes && clientes.length == 0">
+                <div class="card red lighten-4">
+                    <div class="card-content red-text">
+                        Sem dados que atendam aos filtros!
+                    </div>
+
+                </div>
+            </div>
+        </tbody>
+
+    </table>
+
+    <div class="error" *ngIf="error">{{error}}</div>
+
+</div>
+
+<div class="fixed-action-btn" style="bottom: 5%; right: 5%;">
+    <a (click)="novoCliente()" class="btn-floating btn-large waves-effect waves-light red">
+        <i class="material-icons">add</i>
+    </a>
+</div>

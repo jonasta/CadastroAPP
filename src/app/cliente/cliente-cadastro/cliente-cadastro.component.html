@@ -1,0 +1,45 @@
+<div *ngIf="cliente" class="col s12">
+    <div class="row">
+        <div class="col s12 m6">
+            <label for="nome">Nome</label>
+            <input placeholder="Nome" id="nome" type="text" [(ngModel)]="cliente.nome">
+        </div>
+
+        <div class="col s12 m6">
+            <label for="nascimento">Nascimento</label>
+            <input placeholder="Nascimento" id="nascimento" type="date" [(ngModel)]="cliente.nascimento">
+        </div>
+
+        <div class="col s12 m6">
+            <label for="cpf">CPF</label>
+            <input placeholder="CPF" id="cpf" type="text" [(ngModel)]="cliente.cpf">
+        </div>
+
+        <div class="col s12 m6">
+            <label for="email">Email</label>
+            <input placeholder="Email" id="email" type="email" [(ngModel)]="cliente.email">
+        </div>
+
+        <div class="col s12 m6">
+            <label for="telefone">Telefone</label>
+            <input placeholder="Telefone" id="telefone" type="tel" [(ngModel)]="cliente.telefone">
+        </div>
+
+        <div class="col s12 m6">
+            <div class="switch">
+                <label>
+                    Inativo
+                    <input type="checkbox" [(ngModel)]="cliente.ativo">
+                    <span class="lever"></span>
+                    Ativo
+                </label>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+            <button class="waves-effect waves-light btn blue" style="margin-right:25px;" (click)="save()">Salvar</button>
+            <a class="waves-effect waves-light" (click)="goBack()">Voltar</a>
+    </div>
+
+</div>
