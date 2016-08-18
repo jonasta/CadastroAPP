@@ -14,7 +14,7 @@ export class ClienteService {
 
   constructor(private http: Http) {
     if (environment.production){
-      this.clientesUrl = 'http://localhost:8081/API/rs/service';  // URL to web api
+      this.clientesUrl = 'http://cadatroapi2-env.wvmh9qgfdc.sa-east-1.elasticbeanstalk.com/rs/service';  // URL to web api
     }
 }
 
