@@ -3,6 +3,7 @@ import { Router }            from '@angular/router';
 import { ClienteService } from '../cliente.service';
 import { Cliente } from '../cliente';
 import { ParametrosDTO } from './parametrosDTO';
+//component
 
 @Component({
   moduleId: module.id,
